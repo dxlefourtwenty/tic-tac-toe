@@ -18,13 +18,62 @@ const GameBoardModule = (() => {
         initializeBoard() {
             let board = [];
             for (let i = 0; i < this.#rows; i++) {
-                board.push(Array(this.#cols).fill(null));
+                board.push(Array(this.#cols).fill(" "));
             }
             return board;
         }
 
         printBoard() {
-            console.log(this.#board);
+            console.log("\n");
+            console.log(this.#board.map(row => row.join(" | ")).join("\n---------\n"));
+            console.log("\n");
+        }
+
+        checkWin(player) {
+            const b = this.#board;
+
+            for (let r = 0; r < ROWS; r++) {
+                if (b[r][0] === player && b[r][1] === player && b[r][2] === player) 
+                    return true;
+            }
+            
+            for (let c = 0; c < COLS; c++) {
+                if (b[0][c] === player && b[1][c] === player && b[2][c] === player)
+                    return true;
+            }
+
+            if (b[0][0] === player && b[1][1] === player && b[2][2] === player)
+                return true;
+
+            if (b[0][2] === player && b[1][1] === player && b[2][0] === player)
+                return true;
+
+            return false;
+        }
+
+        isFull() {
+            return this.#board.every(row => row.every(cell => cell != " "));
+        }
+
+        makeMove(row, col, player) {
+            if (this.#board[row][col] !== " ") {
+                console.log("This spot has already been taken!");
+            }
+
+            this.#board[row][col] = player;
+            this.printBoard();
+
+            if (this.checkWin(player)) {
+                console.log(`Player ${player} wins`);
+                return true;
+            }
+
+            if (this.isFull()) {
+                console.log("It's a draw");
+                return true;
+            }
+
+            return false;
         }
     }
 
