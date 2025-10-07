@@ -1,4 +1,4 @@
-import { ROWS, COLS } from "./Globals.js";
+import Globals from "./Globals.js";
 
 const GameBoardModule = (() => {
     let instance = null;
@@ -31,12 +31,12 @@ const GameBoardModule = (() => {
         checkWin(player) {
             const b = this.#board;
 
-            for (let r = 0; r < ROWS; r++) {
+            for (let r = 0; r < Globals.ROWS; r++) {
                 if (b[r][0] === player && b[r][1] === player && b[r][2] === player) 
                     return true;
             }
             
-            for (let c = 0; c < COLS; c++) {
+            for (let c = 0; c < Globals.COLS; c++) {
                 if (b[0][c] === player && b[1][c] === player && b[2][c] === player)
                     return true;
             }
@@ -78,7 +78,7 @@ const GameBoardModule = (() => {
 
     function createGame() {
         if (!instance) {
-            instance = new GameBoard(ROWS, COLS);
+            instance = new GameBoard(Globals.ROWS, Globals.COLS);
         } 
         return instance;
     }

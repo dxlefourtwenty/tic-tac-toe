@@ -1,5 +1,5 @@
 import GameBoardModule from './GameBoard.js';
-import { ROWS, COLS } from './Globals.js';
+import Globals from './Globals.js';
 
 const Display = (() => {
 
