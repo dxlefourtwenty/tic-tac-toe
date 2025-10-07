@@ -1,8 +1,7 @@
+import { ROWS, COLS } from "./Globals.js";
+
 const GameBoardModule = (() => {
     let instance = null;
-
-    const ROWS = 3;
-    const COLS = 3;
 
     class GameBoard {
         #rows;
