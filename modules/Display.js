@@ -9,6 +9,7 @@ const Display = (() => {
 
         for (let r = 0; r < Globals.ROWS; r++) {
             const row = [];
+
             for (let c = 0; c < Globals.COLS; c++) {
                 const moveBlock = document.createElement("div");
                 moveBlock.classList.add("move-block");
@@ -16,6 +17,7 @@ const Display = (() => {
                 gameContainer.appendChild(moveBlock);
                 row.push(moveBlock);
             }
+
             board.push(row);
         }
     }
@@ -25,15 +27,27 @@ const Display = (() => {
         currentBlock.textContent = player;
     }
 
-    function updateScore() {
-
-    }
 
     function displayWin() {
-        
+
     }
 
-    return { displayBoard, displayMove };
+    function displayScores() {
+        const scoreOneContainer = document.getElementById("player-one-score");
+        const scoreTwoContainer = document.getElementById("player-two-score");
+        const scoreOne = GameBoardModule.getScores('X');
+        const scoreTwo = GameBoardModule.getScores('O');
+
+        scoreOneContainer.textContent = `Player 1: ${scoreOne}`;
+        scoreTwoContainer.textContent = `Player 2: ${scoreTwo}`;
+    }
+
+    return { 
+        displayBoard, 
+        displayMove, 
+        displayWin,
+        displayScores 
+    };
 
 })();
 

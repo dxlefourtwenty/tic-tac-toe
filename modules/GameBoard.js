@@ -5,6 +5,8 @@ const GameBoardModule = (() => {
     let instance = null;
     let currPlayer = 'X';
 
+    let playerScores = { X: 0, O: 0 };
+
     class GameBoard {
         #rows;
         #cols;
@@ -66,6 +68,7 @@ const GameBoardModule = (() => {
 
             if (this.checkWin(player)) {
                 console.log(`Player ${player} wins`);
+                incrementScore(player);
                 return true;
             }
 
@@ -97,7 +100,24 @@ const GameBoardModule = (() => {
         return currPlayer;
     }
 
-    return { createGame, togglePlayer, getCurrPlayer };
+    function incrementScore(player) {
+        playerScores[player]++;
+    }
+
+    function getScores(player = null) {
+        if (player) 
+            return playerScores[player];
+
+        return {...playerScores};
+    }
+
+    return { 
+        createGame, 
+        togglePlayer, 
+        getCurrPlayer,
+        incrementScore,
+        getScores 
+    };
     
 })();
 

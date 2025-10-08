@@ -2,10 +2,8 @@ import GameBoardModule from "./modules/GameBoard.js";
 import Display from "./modules/Display.js";
 import Globals from "./modules/Globals.js";
 
-let playerOneScore = 0;
-let playerTwoScore = 0;
-
 Display.displayBoard();
+Display.displayScores();
 const game = GameBoardModule.createGame();
 game.printBoard();
 
@@ -23,8 +21,6 @@ function handleClick(e) {
     clickedBlock.style.pointerEvents = "none";
 
     const index = Array.from(cells).indexOf(clickedBlock);
-    console.log("Index of: ", index);
-
     const row = Math.floor(index / Globals.COLS);
     const col = index % Globals.COLS;
 
@@ -34,6 +30,7 @@ function handleClick(e) {
     }
 
     Display.displayMove(row, col, currPlayer);
+    Display.displayScores();
     GameBoardModule.togglePlayer();
 
     console.log("Selected: ", row, col);
