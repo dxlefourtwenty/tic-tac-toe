@@ -1,10 +1,43 @@
 import GameBoardModule from "./modules/GameBoard.js";
+import Display from "./modules/Display.js";
+import Globals from "./modules/Globals.js";
 
+let playerOneScore = 0;
+let playerTwoScore = 0;
+
+Display.displayBoard();
 const game = GameBoardModule.createGame();
 game.printBoard();
 
-game.makeMove(1, 1, "X");
-game.makeMove(0, 0, "O");
-game.makeMove(0, 2, "X");
-game.makeMove(0, 1, "O");
-game.makeMove(2, 0, "X");
+const gameContainer = document.getElementById("game-container");
+const cells = gameContainer.querySelectorAll(".move-block");
+
+gameContainer.addEventListener("click", handleClick);
+
+function handleClick(e) {
+    const clickedBlock = e.target;
+    const currPlayer = GameBoardModule.getCurrPlayer();
+
+    if (!clickedBlock.classList.contains("move-block")) return;
+
+    clickedBlock.style.pointerEvents = "none";
+
+    const index = Array.from(cells).indexOf(clickedBlock);
+    console.log("Index of: ", index);
+
+    const row = Math.floor(index / Globals.COLS);
+    const col = index % Globals.COLS;
+
+    game.makeMove(row, col, currPlayer);
+    if (game.checkWin(currPlayer) || game.isFull()) {
+        gameContainer.removeEventListener("click", handleClick);
+    }
+
+    Display.displayMove(row, col, currPlayer);
+    GameBoardModule.togglePlayer();
+
+    console.log("Selected: ", row, col);
+}
+
+
+

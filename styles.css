@@ -1,3 +1,29 @@
-div {
-    color: red;
+body {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#game-container {
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    border: 2px solid black;
+    height: 450px;
+    width: 450px;
+    margin-top: 180px;
+}
+
+.move-block {
+    border: 2px solid red;
+    font-size: 120px;
+    text-align: center;
+}
+
+#game-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }

@@ -1,7 +1,9 @@
 import Globals from "./Globals.js";
+import Display from "./Display.js";
 
 const GameBoardModule = (() => {
     let instance = null;
+    let currPlayer = 'X';
 
     class GameBoard {
         #rows;
@@ -83,7 +85,19 @@ const GameBoardModule = (() => {
         return instance;
     }
 
-    return { createGame };
+    function togglePlayer() {
+        if (currPlayer === 'X') {
+            currPlayer = 'O';
+        } else if (currPlayer === 'O') {
+            currPlayer = 'X';
+        }
+    }
+
+    function getCurrPlayer() {
+        return currPlayer;
+    }
+
+    return { createGame, togglePlayer, getCurrPlayer };
     
 })();
 
