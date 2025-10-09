@@ -28,8 +28,19 @@ const Display = (() => {
     }
 
 
-    function displayWin() {
+    function displayOutcome(player) {
+        const gameInfo = document.getElementById("game-info");
+        const gameOutcome = document.getElementById("game-outcome");
 
+        gameInfo.style.display = "flex";
+
+        if (player === 'X') {
+            gameOutcome.textContent = `Player 1 Wins!`;
+        } else if (player === 'O') {
+            gameOutcome.textContent = `Player 2 Wins!`
+        } else {
+            gameOutcome.textContent = `It's a draw`;
+        }
     }
 
     function displayScores() {
@@ -42,11 +53,23 @@ const Display = (() => {
         scoreTwoContainer.textContent = `Player 2: ${scoreTwo}`;
     }
 
+    function clearDisplay() {
+        const gameInfo = document.getElementById("game-info");
+
+        gameInfo.style.display = "none";
+
+        document.querySelectorAll(".move-block").forEach(block => {
+            block.textContent = "";
+            block.style.pointerEvents = "auto";
+        });
+    }
+
     return { 
         displayBoard, 
         displayMove, 
-        displayWin,
-        displayScores 
+        displayOutcome,
+        displayScores,
+        clearDisplay 
     };
 
 })();

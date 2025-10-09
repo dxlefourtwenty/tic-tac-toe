@@ -79,6 +79,10 @@ const GameBoardModule = (() => {
 
             return false;
         }
+
+        resetBoard() {
+            this.#board = this.initializeBoard();
+        }
     }
 
     function createGame() {
@@ -86,6 +90,13 @@ const GameBoardModule = (() => {
             instance = new GameBoard(Globals.ROWS, Globals.COLS);
         } 
         return instance;
+    }
+
+    function resetGame() {
+        if (instance) {
+            instance.resetBoard();
+        }
+        currPlayer = 'X';
     }
 
     function togglePlayer() {
@@ -116,7 +127,8 @@ const GameBoardModule = (() => {
         togglePlayer, 
         getCurrPlayer,
         incrementScore,
-        getScores 
+        getScores,
+        resetGame 
     };
     
 })();

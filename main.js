@@ -8,25 +8,33 @@ const game = GameBoardModule.createGame();
 game.printBoard();
 
 const gameContainer = document.getElementById("game-container");
-const cells = gameContainer.querySelectorAll(".move-block");
+const playAgainButton = document.getElementById("play-again");
 
-gameContainer.addEventListener("click", handleClick);
+gameContainer.addEventListener("click", clickBlock);
+playAgainButton.addEventListener("click", resetBoard);
 
-function handleClick(e) {
+function clickBlock(e) {
     const clickedBlock = e.target;
     const currPlayer = GameBoardModule.getCurrPlayer();
 
     if (!clickedBlock.classList.contains("move-block")) return;
-
     clickedBlock.style.pointerEvents = "none";
 
+    const cells = gameContainer.querySelectorAll(".move-block");
     const index = Array.from(cells).indexOf(clickedBlock);
     const row = Math.floor(index / Globals.COLS);
     const col = index % Globals.COLS;
 
     game.makeMove(row, col, currPlayer);
-    if (game.checkWin(currPlayer) || game.isFull()) {
-        gameContainer.removeEventListener("click", handleClick);
+
+    if (game.isFull()) {
+        gameContainer.removeEventListener("click", clickBlock);
+        Display.displayOutcome("Draw");
+    }
+
+    if (game.checkWin(currPlayer)) {
+        gameContainer.removeEventListener("click", clickBlock);
+        Display.displayOutcome(currPlayer);
     }
 
     Display.displayMove(row, col, currPlayer);
@@ -34,6 +42,13 @@ function handleClick(e) {
     GameBoardModule.togglePlayer();
 
     console.log("Selected: ", row, col);
+}
+
+function resetBoard(e) {
+    GameBoardModule.resetGame();
+    Display.clearDisplay();
+
+    gameContainer.addEventListener("click", clickBlock);
 }
 
 
