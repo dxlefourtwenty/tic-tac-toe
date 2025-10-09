@@ -1,5 +1,4 @@
 import Globals from "./Globals.js";
-import Display from "./Display.js";
 
 const GameBoardModule = (() => {
     let instance = null;
