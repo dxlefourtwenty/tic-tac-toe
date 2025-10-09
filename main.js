@@ -11,7 +11,7 @@ const gameContainer = document.getElementById("game-container");
 const playAgainButton = document.getElementById("play-again");
 
 gameContainer.addEventListener("click", clickBlock);
-playAgainButton.addEventListener("click", resetBoard);
+playAgainButton.addEventListener("click", clickReset);
 
 function clickBlock(e) {
     const clickedBlock = e.target;
@@ -44,7 +44,7 @@ function clickBlock(e) {
     console.log("Selected: ", row, col);
 }
 
-function resetBoard(e) {
+function clickReset(e) {
     GameBoardModule.resetGame();
     Display.clearDisplay();
 

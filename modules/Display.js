@@ -35,9 +35,9 @@ const Display = (() => {
         gameInfo.style.display = "flex";
 
         if (player === 'X') {
-            gameOutcome.textContent = `Player 1 Wins!`;
+            gameOutcome.textContent = `Player 1 wins!`;
         } else if (player === 'O') {
-            gameOutcome.textContent = `Player 2 Wins!`
+            gameOutcome.textContent = `Player 2 wins!`
         } else {
             gameOutcome.textContent = `It's a draw`;
         }
