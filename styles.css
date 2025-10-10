@@ -1,9 +1,26 @@
+@font-face {
+  font-family: 'Limelight';
+  src: url('./fonts/limelight-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Limelight Bold';
+  src: url('./fonts/limelight-regular-webfont.woff2') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
 body {
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    background-color: rgb(228, 228, 228);
+    background-color: rgb(214, 233, 235);
+    font-family: LimeLight;
+    min-width: 1000px;
+    min-height: 750px;
 }
 
 #header {
@@ -13,6 +30,10 @@ body {
     justify-content: center;
     align-items: center;
     color: rgb(102, 4, 4);
+}
+
+#gold-TAC {
+    color: rgb(201, 75, 12);
 }
 
 #middle-container {
@@ -36,9 +57,9 @@ body {
 .move-block {
     border: 2px solid rgb(167, 4, 4);
     box-shadow: 2px 1px 10px rgb(153, 6, 6);
-    background-color: rgb(240, 222, 222);
+    background-color: rgb(237, 214, 214);
     color: rgb(158, 19, 1);
-    font-size: 120px;
+    font-size: 115px;
     text-align: center;
     cursor: pointer;
 }
@@ -67,7 +88,8 @@ body {
     height: 150px;
     text-align: center;
     line-height: 0;
-    background-color: rgb(228, 228, 228);
+    background-color: rgb(214, 233, 235);
+    font-family: Limelight;
 }
 
 .score:focus {
@@ -89,6 +111,7 @@ body {
 #player-two-score {
     font-size: 100px;
     color: rgb(153, 17, 4);
+    font-family: 'Times New Roman', Times, serif;
 }
 
 #play-again {
@@ -99,8 +122,9 @@ body {
     color: rgb(189, 83, 13);
     text-decoration: underline;
     border: none;
-    background-color: rgb(228, 228, 228);
+    background-color: rgb(214, 233, 235);
     cursor: pointer;
+    font-family: Limelight;
 }
 
 #game-outcome {
