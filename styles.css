@@ -57,8 +57,17 @@ body {
 }
 
 .score {
-    font-size: 50px;
+    font-size: 40px;
     font-weight: bold;
+    border: none;
+    width: 300px;
+    height: 150px;
+    text-align: center;
+}
+
+.score:focus {
+    border: none;
+    outline: none;
 }
 
 #play-again {
@@ -75,3 +84,4 @@ body {
 #game-outcome {
     margin: 0;
 }
+

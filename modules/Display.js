@@ -34,10 +34,10 @@ const Display = (() => {
 
         gameInfo.style.display = "flex";
 
-        if (player === 'X') {
-            gameOutcome.textContent = `Player 1 wins!`;
-        } else if (player === 'O') {
-            gameOutcome.textContent = `Player 2 wins!`
+        if (player === "X") {
+            gameOutcome.textContent = `${GameBoardModule.getPlayerOneName()} wins!`;
+        } else if (player === "O") {
+            gameOutcome.textContent = `${GameBoardModule.getPlayerTwoName()} wins!`;
         } else {
             gameOutcome.textContent = `It's a draw`;
         }
@@ -46,11 +46,11 @@ const Display = (() => {
     function displayScores() {
         const scoreOneContainer = document.getElementById("player-one-score");
         const scoreTwoContainer = document.getElementById("player-two-score");
-        const scoreOne = GameBoardModule.getScores('X');
-        const scoreTwo = GameBoardModule.getScores('O');
+        const scoreOne = GameBoardModule.getScores('playerOne');
+        const scoreTwo = GameBoardModule.getScores('playerTwo');
 
-        scoreOneContainer.textContent = `Player 1: ${scoreOne}`;
-        scoreTwoContainer.textContent = `Player 2: ${scoreTwo}`;
+        scoreOneContainer.textContent = `${scoreOne}`;
+        scoreTwoContainer.textContent = `${scoreTwo}`;
     }
 
     function clearDisplay() {
@@ -69,7 +69,7 @@ const Display = (() => {
         displayMove, 
         displayOutcome,
         displayScores,
-        clearDisplay 
+        clearDisplay
     };
 
 })();

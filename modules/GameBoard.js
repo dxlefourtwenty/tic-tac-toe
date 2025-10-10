@@ -2,9 +2,11 @@ import Globals from "./Globals.js";
 
 const GameBoardModule = (() => {
     let instance = null;
-    let currPlayer = 'X';
+    const playerOne = { name: "Player 1", marker: "X"};
+    const playerTwo = { name: "Player 2", marker: "O"};
+    let currPlayer = playerOne;
 
-    let playerScores = { X: 0, O: 0 };
+    let playerScores = { playerOne: 0, playerTwo: 0 };
 
     class GameBoard {
         #rows;
@@ -31,23 +33,23 @@ const GameBoardModule = (() => {
             console.log("\n");
         }
 
-        checkWin(player) {
+        checkWin(marker) {
             const b = this.#board;
 
             for (let r = 0; r < Globals.ROWS; r++) {
-                if (b[r][0] === player && b[r][1] === player && b[r][2] === player) 
+                if (b[r][0] === marker && b[r][1] === marker && b[r][2] === marker) 
                     return true;
             }
             
             for (let c = 0; c < Globals.COLS; c++) {
-                if (b[0][c] === player && b[1][c] === player && b[2][c] === player)
+                if (b[0][c] === marker && b[1][c] === marker && b[2][c] === marker)
                     return true;
             }
 
-            if (b[0][0] === player && b[1][1] === player && b[2][2] === player)
+            if (b[0][0] === marker && b[1][1] === marker && b[2][2] === marker)
                 return true;
 
-            if (b[0][2] === player && b[1][1] === player && b[2][0] === player)
+            if (b[0][2] === marker && b[1][1] === marker && b[2][0] === marker)
                 return true;
 
             return false;
@@ -57,17 +59,17 @@ const GameBoardModule = (() => {
             return this.#board.every(row => row.every(cell => cell != " "));
         }
 
-        makeMove(row, col, player) {
+        makeMove(row, col, marker) {
             if (this.#board[row][col] !== " ") {
                 console.log("This spot has already been taken!");
             }
 
-            this.#board[row][col] = player;
+            this.#board[row][col] = marker;
             this.printBoard();
 
-            if (this.checkWin(player)) {
-                console.log(`Player ${player} wins`);
-                incrementScore(player);
+            if (this.checkWin(marker)) {
+                console.log(`Player ${marker} wins`);
+                incrementScore(currPlayer);
                 return true;
             }
 
@@ -95,15 +97,11 @@ const GameBoardModule = (() => {
         if (instance) {
             instance.resetBoard();
         }
-        currPlayer = 'X';
+        currPlayer = playerOne;
     }
 
     function togglePlayer() {
-        if (currPlayer === 'X') {
-            currPlayer = 'O';
-        } else if (currPlayer === 'O') {
-            currPlayer = 'X';
-        }
+        currPlayer = currPlayer === playerOne ? playerTwo : playerOne;
     }
 
     function getCurrPlayer() {
@@ -111,14 +109,33 @@ const GameBoardModule = (() => {
     }
 
     function incrementScore(player) {
-        playerScores[player]++;
+        if (player.marker === "X") playerScores.playerOne++;
+        else if (player.marker === "O") playerScores.playerTwo++;
     }
 
     function getScores(player = null) {
-        if (player) 
-            return playerScores[player];
+        return player ? playerScores[player] : { ...playerScores };
+    }
 
-        return {...playerScores};
+    function setPlayerOneName(name) {
+        if (name != null) {
+            playerOne.name = name;
+        }
+        console.log("Player One Name Set");
+    }
+
+    function setPlayerTwoName(name) {
+        if (name != null) {
+            playerTwo.name = name;
+        }
+    }
+
+    function getPlayerOneName() {
+        return playerOne.name;
+    }
+
+    function getPlayerTwoName() {
+        return playerTwo.name;
     }
 
     return { 
@@ -127,7 +144,11 @@ const GameBoardModule = (() => {
         getCurrPlayer,
         incrementScore,
         getScores,
-        resetGame 
+        resetGame,
+        setPlayerOneName,
+        setPlayerTwoName,
+        getPlayerOneName,
+        getPlayerTwoName 
     };
     
 })();
