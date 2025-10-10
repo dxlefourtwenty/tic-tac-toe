@@ -35,9 +35,9 @@ const Display = (() => {
         gameInfo.style.display = "flex";
 
         if (player === "X") {
-            gameOutcome.textContent = `${GameBoardModule.getPlayerOneName()} wins!`;
+            gameOutcome.textContent = `${GameBoardModule.getPlayerOneName()} WINS!`;
         } else if (player === "O") {
-            gameOutcome.textContent = `${GameBoardModule.getPlayerTwoName()} wins!`;
+            gameOutcome.textContent = `${GameBoardModule.getPlayerTwoName()} WINS!`;
         } else {
             gameOutcome.textContent = `Draw.`;
         }

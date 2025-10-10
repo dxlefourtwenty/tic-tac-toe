@@ -96,13 +96,13 @@ const GameBoardModule = (() => {
     }
 
     function setPlayerOneName(name) {
-        if (name != null) {
+        if (name != null || name != "") {
             playerOne.name = name;
         }
     }
 
     function setPlayerTwoName(name) {
-        if (name != null) {
+        if (name != null || name != "") {
             playerTwo.name = name;
         }
     }
