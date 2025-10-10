@@ -99,7 +99,6 @@ const GameBoardModule = (() => {
         if (name != null) {
             playerOne.name = name;
         }
-        console.log("Player One Name Set");
     }
 
     function setPlayerTwoName(name) {
