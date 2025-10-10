@@ -27,30 +27,19 @@ const GameBoardModule = (() => {
             return board;
         }
 
-        printBoard() {
-            console.log("\n");
-            console.log(this.#board.map(row => row.join(" | ")).join("\n---------\n"));
-            console.log("\n");
-        }
-
         checkWin(marker) {
             const b = this.#board;
 
             for (let r = 0; r < Globals.ROWS; r++) {
-                if (b[r][0] === marker && b[r][1] === marker && b[r][2] === marker) 
-                    return true;
+                if (b[r][0] === marker && b[r][1] === marker && b[r][2] === marker) return true;
             }
-            
+
             for (let c = 0; c < Globals.COLS; c++) {
-                if (b[0][c] === marker && b[1][c] === marker && b[2][c] === marker)
-                    return true;
+                if (b[0][c] === marker && b[1][c] === marker && b[2][c] === marker) return true;
             }
 
-            if (b[0][0] === marker && b[1][1] === marker && b[2][2] === marker)
-                return true;
-
-            if (b[0][2] === marker && b[1][1] === marker && b[2][0] === marker)
-                return true;
+            if (b[0][0] === marker && b[1][1] === marker && b[2][2] === marker) return true;
+            if (b[0][2] === marker && b[1][1] === marker && b[2][0] === marker) return true;
 
             return false;
         }
@@ -60,21 +49,10 @@ const GameBoardModule = (() => {
         }
 
         makeMove(row, col, marker) {
-            if (this.#board[row][col] !== " ") {
-                console.log("This spot has already been taken!");
-            }
-
             this.#board[row][col] = marker;
-            this.printBoard();
 
             if (this.checkWin(marker)) {
-                console.log(`Player ${marker} wins`);
                 incrementScore(currPlayer);
-                return true;
-            }
-
-            if (this.isFull()) {
-                console.log("It's a draw");
                 return true;
             }
 

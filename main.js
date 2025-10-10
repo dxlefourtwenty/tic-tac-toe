@@ -5,7 +5,6 @@ import Globals from "./modules/Globals.js";
 Display.displayBoard();
 Display.displayScores();
 const game = GameBoardModule.createGame();
-game.printBoard();
 
 const gameContainer = document.getElementById("game-container");
 const playAgainButton = document.getElementById("play-again");

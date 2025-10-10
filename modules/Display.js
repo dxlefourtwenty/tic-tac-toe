@@ -39,7 +39,7 @@ const Display = (() => {
         } else if (player === "O") {
             gameOutcome.textContent = `${GameBoardModule.getPlayerTwoName()} wins!`;
         } else {
-            gameOutcome.textContent = `It's a draw`;
+            gameOutcome.textContent = `Draw.`;
         }
     }
 
